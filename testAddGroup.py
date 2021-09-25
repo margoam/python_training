@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
 
@@ -10,11 +8,10 @@ class TestAddGroup(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def test_add_group(self):
-        wd = self.wd
-        # open homepage
+    def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/group.php")
-        # login
+
+    def login(self, wd):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -22,8 +19,11 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
-        # open group creation
+
+    def open_group_creation(self, wd):
         wd.find_element_by_xpath("//input[@value='Login']").click()
+
+    def create_group(self, wd):
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
@@ -38,24 +38,21 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys("sggsdgs")
         # submit group creation
         wd.find_element_by_name("submit").click()
-        # return to groups page
+
+    def return_to_group_page(self, wd):
         wd.find_element_by_link_text("group page").click()
-        # logout
+
+    def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
-    
-    def is_element_present(self, how, what):
-        try:
-            self.wd.find_element(by=how, value=what)
-        except NoSuchElementException as _:
-            return False
-        return True
-    
-    def is_alert_present(self):
-        try:
-            self.wd.switch_to_alert()
-        except NoAlertPresentException as _:
-            return False
-        return True
+
+    def test_add_group(self):
+        wd = self.wd
+        self.open_home_page(wd)  # вызов метода open_home_page
+        self.login(wd)
+        self.open_group_creation(wd)
+        self.create_group(wd)
+        self.return_to_group_page(wd)
+        self.logout(wd)
 
     def tearDown(self):
         self.wd.quit()
