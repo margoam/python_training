@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import unittest
+from group import Group
 
 
 class TestAddGroup(unittest.TestCase):
@@ -23,19 +24,19 @@ class TestAddGroup(unittest.TestCase):
     def open_group_creation(self, wd):
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def create_group(self, wd, name, header, footer):
+    def create_group(self, wd, group):
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(name)
+        wd.find_element_by_name("group_name").send_keys(group.name)
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(header)
+        wd.find_element_by_name("group_header").send_keys(group.header)
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(footer)
+        wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
 
@@ -50,7 +51,7 @@ class TestAddGroup(unittest.TestCase):
         self.open_home_page(wd)  # вызов метода open_home_page
         self.login(wd, username="admin", password="secret")
         self.open_group_creation(wd)
-        self.create_group(wd, name="test3", header="dsffsd", footer="sggsdgs")
+        self.create_group(wd, Group(name="test3", header="dsffsd", footer="sggsdgs"))
         self.return_to_group_page(wd)
         self.logout(wd)
 
