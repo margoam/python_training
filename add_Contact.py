@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 import unittest
+from contact import Contact
 
 
 class AddContact(unittest.TestCase):
@@ -25,29 +26,29 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(first_name)
+        wd.find_element_by_name("firstname").send_keys(contact.first_name)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(middle_name)
+        wd.find_element_by_name("middlename").send_keys(contact.middle_name)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(last_name)
+        wd.find_element_by_name("lastname").send_keys(contact.last_name)
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(home_number)
+        wd.find_element_by_name("home").send_keys(contact.home_number)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(mobile_number)
+        wd.find_element_by_name("mobile").send_keys(contact.mobile_number)
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(birth_day)
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.birth_day)
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(birth_month)
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.birth_month)
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(birth_year)
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
@@ -61,9 +62,9 @@ class AddContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.create_contact(wd, first_name="Test_name", middle_name="Test_middle_name", last_name="Test_last_name",
+        self.create_contact(wd, Contact(first_name="Test_name", middle_name="Test_middle_name", last_name="Test_last_name",
                             address="asdasdasd", home_number="123", mobile_number="131231231", birth_day="3",
-                            birth_month="March", birth_year="1996")
+                            birth_month="March", birth_year="1996"))
         self.return_to_home_page(wd)
         self.logout(wd)
 
