@@ -20,8 +20,7 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def create_contact(self, wd, first_name, middle_name, last_name, address, home_number, mobile_number, birth_day,
-                       birth_month, birth_year):
+    def create_contact(self, wd, contact):
         # fill contact form
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
