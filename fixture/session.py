@@ -15,6 +15,7 @@ class SessionHelper:  # Помощник по работе с сессией
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
+        wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def logout(self):
         wd = self.app.wd
