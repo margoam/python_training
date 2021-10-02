@@ -9,11 +9,13 @@ class TestAddGroup(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/group.php")
 
-    def login(self, wd, username, password):
-        self.open_home_page(wd)  # вызов метода open_home_page
+    def login(self, username, password):
+        wd = self.wd
+        self.open_home_page()  # вызов метода open_home_page
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -22,11 +24,13 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
 
-    def open_group_creation(self, wd):
+    def open_group_creation(self):
+        wd = self.wd
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def create_group(self, wd, group):
-        self.open_group_creation(wd)
+    def create_group(self, group):
+        wd = self.wd
+        self.open_group_creation()
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
@@ -41,19 +45,21 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
-        self.return_to_group_page(wd)
+        self.return_to_group_page()
 
-    def return_to_group_page(self, wd):
+    def return_to_group_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("group page").click()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
     def test_add_group(self):
         wd = self.wd
-        self.login(wd, username="admin", password="secret")
-        self.create_group(wd, Group(name="test3", header="dsffsd", footer="sggsdgs"))
-        self.logout(wd)
+        self.login(username="admin", password="secret")
+        self.create_group(Group(name="test3", header="dsffsd", footer="sggsdgs"))
+        self.logout()
 
     def tearDown(self):
         self.wd.quit()
