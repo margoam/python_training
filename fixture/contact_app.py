@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
 
-class Contact_app:
+class ContactApp:
 
     def __init__(self):
         self.wd = webdriver.Firefox()
