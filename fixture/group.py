@@ -3,13 +3,8 @@ class GroupHelper:
     def __init__(self, app):
         self.app = app
 
-    def open_group_creation(self):
-        wd = self.app.wd
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
     def create(self, group):
         wd = self.app.wd
-        self.open_group_creation()
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
@@ -29,3 +24,4 @@ class GroupHelper:
     def return_to_group_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
+
