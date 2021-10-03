@@ -28,6 +28,11 @@ class GroupHelper:
     def delete_first_group(self):
         wd = self.app.wd
         self.open_groups_page()
+        # выбрать первую группу
+        wd.find_element_by_name("selected[]").click()
+        # удалить первую группу
+        wd.find_element_by_name("delete").click()
+        self.return_to_group_page()
 
     def return_to_group_page(self):
         wd = self.app.wd
