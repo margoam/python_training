@@ -1,4 +1,4 @@
-# Слой вспомогательных методов для тестов ("прослойка")
+# Слой вспомогательных методов для тестов ("прослойка") - фикстура
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
