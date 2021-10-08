@@ -1,9 +1,10 @@
 from model.contact import Contact
 
 
-def test_edit_contact(app):
+def test_edit_first_contact(app):
     app.session.login(username="admin", password="secret")
-    app.contact.edit(Contact(first_name="Marta", middle_name="-", last_name="Jons",
-                             nick_name="12312@@@", address="Minsk", home_number="+21312313", mobile_number="+12313",
-                             birth_day="5", birth_month="March", birth_year="1960"))
+    app.contact.edit(Contact(first_name="", middle_name="", last_name="",
+                             nick_name="test_nick_@@@", address="", home_number="", mobile_number="",
+                             birth_day="", birth_month="", birth_year="", company="OOO TEST", title="Title_test",
+                             email="example@gmail.com", address_sec="Belarus, Minsk", notes="text"))
     app.session.logout()
