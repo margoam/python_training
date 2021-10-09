@@ -9,10 +9,7 @@ class ContactHelper:
         # добавление домашней страницы, на которой находятся созданные контакты
         wd.get("http://localhost/addressbook/index.php")
 
-    def create(self, contact):
-        wd = self.app.wd
-        # fill contact form
-        wd.find_element_by_link_text("add new").click()
+    def contact_name(self, contact, wd):
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.first_name)
@@ -25,15 +22,27 @@ class ContactHelper:
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
-        wd.find_element_by_name("address").click()
-        wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(contact.address)
+
+    def home_number(self, contact, wd):
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys(contact.home_number)
+
+    def mobile_number(self, contact, wd):
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
         wd.find_element_by_name("mobile").send_keys(contact.mobile_number)
+
+    def create(self, contact):
+        wd = self.app.wd
+        # fill contact form
+        wd.find_element_by_link_text("add new").click()
+        self.contact_name(contact, wd)
+        self.home_number(contact, wd)
+        self.mobile_number(contact, wd)
+        wd.find_element_by_name("address").click()
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("bday").click()
         wd.find_element_by_name("bmonth").click()
         wd.find_element_by_name("byear").click()
@@ -57,6 +66,8 @@ class ContactHelper:
         # выбрать первый контакт
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.contact_name(contact, wd)
+        self.home_number(contact, wd)
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
         wd.find_element_by_name("company").send_keys(contact.company)
