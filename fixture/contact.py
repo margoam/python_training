@@ -4,6 +4,11 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def open_home_page(self):
+        wd = self.app.wd
+        # добавление домашней страницы, на которой находятся созданные контакты
+        wd.get("http://localhost/addressbook/index.php")
+
     def create(self, contact):
         wd = self.app.wd
         # fill contact form
@@ -39,8 +44,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        # добавление домашней страницы, на которой находятся созданные контакты
-        wd.get("http://localhost/addressbook/index.php")
+        self.open_home_page()
         # выбрать первый контакт
         wd.find_element_by_name("selected[]").click()
         # удалить выбранный контакт
@@ -49,8 +53,7 @@ class ContactHelper:
 
     def edit(self, contact):
         wd = self.app.wd
-        # добавление домашней страницы, на которой находятся созданные контакты
-        wd.get("http://localhost/addressbook/index.php")
+        self.open_home_page()
         # выбрать первый контакт
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
