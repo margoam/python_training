@@ -1,3 +1,4 @@
+from selenium.webdriver.support.ui import Select
 
 
 class ContactHelper:
@@ -33,6 +34,13 @@ class ContactHelper:
         wd.find_element_by_name("mobile").clear()
         wd.find_element_by_name("mobile").send_keys(contact.mobile_number)
 
+    def date_of_birth(self, contact, wd):
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.birth_day)
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.birth_month)
+        wd.find_element_by_name("byear").click()
+        wd.find_element_by_name("byear").clear()
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
+
     def create(self, contact):
         wd = self.app.wd
         # fill contact form
@@ -43,11 +51,7 @@ class ContactHelper:
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
         wd.find_element_by_name("address").send_keys(contact.address)
-        wd.find_element_by_name("bday").click()
-        wd.find_element_by_name("bmonth").click()
-        wd.find_element_by_name("byear").click()
-        wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact.birth_year)
+        self.date_of_birth(contact, wd)
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
@@ -68,6 +72,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.contact_name(contact, wd)
         self.home_number(contact, wd)
+        self.date_of_birth(contact, wd)
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
         wd.find_element_by_name("company").send_keys(contact.company)
