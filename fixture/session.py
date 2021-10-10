@@ -31,7 +31,6 @@ class SessionHelper:  # Помощник по работе с сессией
         return len(wd.find_elements_by_link_text("Logout")) > 0
 
     def ensure_logout(self):
-        wd = self.app.wd
         if self.is_logged_in():
             self.logout()
 
