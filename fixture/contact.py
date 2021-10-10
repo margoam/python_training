@@ -21,23 +21,14 @@ class ContactHelper:
         self.edit_name_field("email", contact.email)
         self.edit_name_field("address", contact.address)
         self.edit_name_field("notes", contact.notes)
-
-    def fill_date(self, contact):
-        self.edit_date_of_birth("bday", contact.birth_day)
-        self.edit_date_of_birth("bmonth", contact.birth_month)
+        self.edit_name_field("bday", contact.birth_day)
+        self.edit_name_field("bmonth", contact.birth_month)
 
     def edit_name_field(self, field_name, text):
         wd = self.app.wd
         if text is not None:
             wd.find_element_by_name(field_name).click()
-            wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
-
-    def edit_date_of_birth(self, name_date_part, date_data):
-        wd = self.app.wd
-        if date_data is not None:
-            Select(wd.find_element_by_name(name_date_part)).select_by_visible_text(date_data)
-            Select(wd.find_element_by_name(name_date_part)).select_by_visible_text(date_data)
 
     def choose_first_contact_for_edit(self):
         wd = self.app.wd
@@ -49,7 +40,6 @@ class ContactHelper:
         # fill contact form
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
-        self.fill_date(contact)
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
@@ -67,7 +57,6 @@ class ContactHelper:
         self.open_home_page()
         self.choose_first_contact_for_edit()
         self.fill_contact_form(new_contact_data)
-        self.fill_date(new_contact_data)
         wd.find_element_by_name("update").click()
 
     def return_to_home_page(self):
