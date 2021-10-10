@@ -1,4 +1,3 @@
-from selenium.webdriver.support.ui import Select
 
 
 class ContactHelper:
@@ -62,3 +61,8 @@ class ContactHelper:
     def return_to_home_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home page").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_home_page()
+        return len(wd.find_elements_by_name("selected[]"))
