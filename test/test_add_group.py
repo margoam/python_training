@@ -6,3 +6,4 @@ def test_add_group(app):  # Тестовый метод, принимающий 
     app.group.create(Group(name="test3", header="dsffsd", footer="sggsdgs"))  # всп метод
     new_groups = app.group.get_group_list()
     assert len(old_groups) + 1 == len(new_groups)
+    print(new_groups)
