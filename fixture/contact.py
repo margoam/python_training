@@ -40,6 +40,11 @@ class ContactHelper:
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
 
+    def choose_random_contact_for_edit(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+
     def create(self, contact):
         wd = self.app.wd
         # fill contact form
@@ -50,19 +55,25 @@ class ContactHelper:
         self.contact_cache = None
 
     def delete_first_contact(self):
+        self.delete_random_contact(0)
+
+    def delete_random_contact(self, index):
         wd = self.app.wd
         self.open_home_page()
         # выбрать первый контакт
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
         # удалить выбранный контакт
         wd.find_element_by_xpath("//input[@value = 'Delete']").click()
         wd.switch_to_alert().accept()  # принять уведомление
         self.contact_cache = None
 
-    def edit(self, new_contact_data):
+    def edit(self):
+        self.edit_random_contact_by_index(0)
+
+    def edit_random_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_home_page()
-        self.choose_first_contact_for_edit()
+        self.choose_random_contact_for_edit(index)
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
         self.contact_cache = None
