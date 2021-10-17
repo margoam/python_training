@@ -27,8 +27,13 @@ class ContactHelper:
     def edit_name_field(self, field_name, text):
         wd = self.app.wd
         if text is not None:
-            wd.find_element_by_name(field_name).click()
-            wd.find_element_by_name(field_name).send_keys(text)
+            if field_name not in ("bday", "bmonth"):
+                wd.find_element_by_name(field_name).click()
+                wd.find_element_by_name(field_name).clear()
+                wd.find_element_by_name(field_name).send_keys(text)
+            else:
+                wd.find_element_by_name(field_name).click()
+                wd.find_element_by_name(field_name).send_keys(text)
 
     def choose_first_contact_for_edit(self):
         wd = self.app.wd
