@@ -31,6 +31,10 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
+    def choose_group_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
     def edit_group_field(self, field_name, text):
         wd = self.app.wd
         if text is not None:
@@ -39,18 +43,24 @@ class GroupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def delete_first_group(self):
+        self.delete_group_by_index(0)
+
+    def delete_group_by_index(self, index):
         wd = self.app.wd
         self.open_groups_page()
-        self.choose_first_group()
-        # удалить первую группу
+        self.choose_group_by_index(index)
+        # удалить случайную группу
         wd.find_element_by_name("delete").click()
         self.return_to_group_page()
         self.group_cache = None  # необходимо сбросить кеш после его модификации (невалидный)
 
-    def edit(self, new_group_data):
+    def edit(self):
+        self.edit_random_group_by_index(0)
+
+    def edit_random_group_by_index(self, index, new_group_data):
         wd = self.app.wd
         self.open_groups_page()
-        self.choose_first_group()
+        self.choose_group_by_index(index)
         wd.find_element_by_name("edit").click()
         self.fill_form_group(new_group_data)
         # submit group creation
