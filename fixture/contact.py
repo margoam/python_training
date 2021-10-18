@@ -36,14 +36,11 @@ class ContactHelper:
                 wd.find_element_by_name(field_name).send_keys(text)
 
     def choose_first_contact_for_edit(self):
-        wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.choose_random_contact_for_edit(0)
 
     def choose_random_contact_for_edit(self, index):
         wd = self.app.wd
-        wd.find_elements_by_name("selected[]")[index].click()
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
 
     def create(self, contact):
         wd = self.app.wd
