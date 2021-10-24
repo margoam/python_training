@@ -99,6 +99,7 @@ class ContactHelper:
                 l_name = element.find_element_by_xpath("td[2]").text
                 f_name = element.find_element_by_xpath("td[3]").text
                 all_phones = element.find_element_by_xpath("td[6]").text
+                #  за исключением факса, его нет на главной странице
                 self.contact_cache.append(Contact(id=id, first_name=f_name, last_name=l_name,
                                                   all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
