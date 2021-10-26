@@ -21,6 +21,7 @@ class ContactHelper:
         self.edit_name_field("mobile", contact.mobile_number)
         self.edit_name_field("work", contact.work_number)
         self.edit_name_field("fax", contact.fax_number)
+        self.edit_name_field("phone2", contact.second_number)
         self.edit_name_field("email", contact.email)
         self.edit_name_field("address", contact.address)
         self.edit_name_field("notes", contact.notes)
@@ -133,12 +134,13 @@ class ContactHelper:
         mobile_number = wd.find_element_by_name("mobile").get_attribute("value")
         work_number = wd.find_element_by_name("work").get_attribute("value")
         fax_number = wd.find_element_by_name("fax").get_attribute("value")
+        second_number = wd.find_element_by_name("phone2").get_attribute("value")
         email = wd.find_element_by_name("email").get_attribute("value")
         email2 = wd.find_element_by_name("email2").get_attribute("value")
         email3 = wd.find_element_by_name("email3").get_attribute("value")
         return Contact(last_name=last_name, first_name=first_name, id=id, home_number=home_number,
                        mobile_number=mobile_number, work_number=work_number, fax_number=fax_number,
-                       address=address, email=email, email2=email2, email3=email3)
+                       second_number=second_number, address=address, email=email, email2=email2, email3=email3)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
