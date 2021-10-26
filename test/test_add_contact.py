@@ -17,7 +17,7 @@ test_data = [Contact(first_name=random_string("first_name", 10), middle_name=ran
                      home_number='+' + str(random.randint(100000000000, 999999999999)), mobile_number='+' + str(random.randint(100000000000, 999999999999)),
                      birth_day=random.randint(1, 31), birth_month=list_of_month[random.randint(0, 12)], birth_year=random.randint(1950, 2021),
                      second_number='+' + str(random.randint(100000000000, 999999999999)),
-                     work_number='+' + str(random.randint(100000000000, 999999999999)))]
+                     work_number='+' + str(random.randint(100000000000, 999999999999))) for i in range(3)]
 
 
 @pytest.mark.parametrize("contact", test_data, ids=[repr(x) for x in test_data])
