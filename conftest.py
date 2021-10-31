@@ -42,7 +42,7 @@ def pytest_addoption(parser):
     parser.addoption("--password", action="store")
 
 
-def pytest_generate_tests(metafunc):
+def pytest_generate_tests(metafunc):  # генерация тестов
     for fixture in metafunc.fixturenames:
         if fixture.startswith("data_"):
             testdata = load_from_module(fixture[5:])
