@@ -20,8 +20,8 @@ def app(request):
     username = request.config.getoption("--username")
     password = request.config.getoption("--password")
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=target['baseUrl'], username=username,
-                              password=password)  # Инициализация фикстуры
+        fixture = Application(browser=browser, base_url=target['baseUrl'], username=target['username'],
+                              password=target['password'])  # Инициализация фикстуры
     fixture.session.ensure_login(username, password)
     return fixture
 
@@ -38,8 +38,8 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--target", action="store", default="target.json")
-    parser.addoption("--username", action="store")
-    parser.addoption("--password", action="store")
+    parser.addoption("--username", action="store", default="target.json")
+    parser.addoption("--password", action="store", default="target.json")
 
 
 def pytest_generate_tests(metafunc):  # генерация тестов
