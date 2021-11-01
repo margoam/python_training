@@ -1,8 +1,8 @@
 from model.group import Group
 
 
-def test_add_group(app, data_groups):  # Тестовый метод, принимающий фикстуру в качестве параметра
-    group = data_groups
+def test_add_group(app, json_groups):  # Тестовый метод, принимающий фикстуру в качестве параметра
+    group = json_groups
     old_groups = app.group.get_group_list()
     app.group.create(group)  # всп метод
     new_groups = app.group.get_group_list()
