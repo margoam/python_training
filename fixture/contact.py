@@ -1,5 +1,7 @@
 from model.contact import Contact
 import re
+import os.path
+import json
 
 
 class ContactHelper:
@@ -9,7 +11,9 @@ class ContactHelper:
     def open_home_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("results")) > 0):
-            wd.find_element_by_link_text("home").click()
+            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../target.json")) as f:  # .. -на один уровень выше
+                target = json.load(f)
+            wd.get(target["baseUrl"])
 
     def fill_contact_form(self, contact):
         self.edit_name_field("firstname", contact.first_name)
