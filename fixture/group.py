@@ -35,6 +35,10 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
+    def choose_group_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
     def edit_group_field(self, field_name, text):
         wd = self.app.wd
         if text is not None:
@@ -49,6 +53,15 @@ class GroupHelper:
         wd = self.app.wd
         self.open_groups_page()
         self.choose_group_by_index(index)
+        # удалить случайную группу
+        wd.find_element_by_name("delete").click()
+        self.return_to_group_page()
+        self.group_cache = None  # необходимо сбросить кеш после его модификации (невалидный)
+
+    def delete_group_by_id(self, id):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.choose_group_by_id(id)
         # удалить случайную группу
         wd.find_element_by_name("delete").click()
         self.return_to_group_page()
