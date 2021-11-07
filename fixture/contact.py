@@ -13,7 +13,7 @@ class ContactHelper:
         if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("results")) > 0):
             with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../target.json")) as f:  # .. -на один уровень выше
                 target = json.load(f)
-            wd.get(target["baseUrl"])
+            wd.get(target['web']["baseUrl"])
 
     def fill_contact_form(self, contact):
         self.edit_name_field("firstname", contact.first_name)
