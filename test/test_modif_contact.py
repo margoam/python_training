@@ -1,5 +1,6 @@
 from model.contact import Contact
 import random
+import time
 
 
 def test_edit_contact(app, db, check_ui):
@@ -13,8 +14,9 @@ def test_edit_contact(app, db, check_ui):
                       home_number="+234234243", email="example@gmail.com", notes="text", birth_day="2", birth_month="June", birth_year="1976")
     contact.id = contacts.id
     app.contact.edit_random_contact_by_id(contacts.id, contact)
+    time.sleep(1)
     new_contacts = db.get_contact_list()
-    assert sorted(new_contacts, key=Contact.id_or_max) == sorted(old_contacts, key=Contact.id_or_max)
+    assert len(new_contacts) == len(old_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
