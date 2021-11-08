@@ -32,12 +32,12 @@ class DbFixture:
             cursor.execute("select id, firstname, middlename, lastname, nickname, address, home, mobile, work, fax, "
                            "email, email2, email3, bday, bmonth, byear, notes, phone2 from addressbook")  # выполнение запроса
             for row in cursor:
-                (id, firstname, middlename, lastname, nickname, address, home, mobile, work, fax, email, email2, email3,
-                 bday, bmonth, byear, notes, phone2) = row
-                list.append(Contact(id=str(id), first_name=firstname, middle_name=middlename, last_name=lastname,
-                                    nick_name=nickname, address=address, home_number=home, mobile_number=mobile,
-                                    work_number=work, fax_number=fax, email=email, email2=email2, email3=email3,
-                                    birth_day=bday, birth_month=bmonth, birth_year=byear, notes=notes, second_number=phone2))
+                (id, first_name, middle_name, last_name, nick_name, address, home_number, mobile_number, work_number, fax_number, email, email2, email3,
+                 birth_day, birth_month, birth_year, notes, second_number) = row
+                list.append(Contact(id=str(id), first_name=first_name, middle_name=middle_name, last_name=last_name,
+                                    nick_name=nick_name, address=address, home_number=home_number, mobile_number=mobile_number,
+                                    work_number=work_number, fax_number=fax_number, email=email, email2=email2, email3=email3,
+                                    birth_day=birth_day, birth_month=birth_month, birth_year=birth_year, notes=notes, second_number=second_number))
         finally:
             cursor.close()
         return list

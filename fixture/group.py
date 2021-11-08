@@ -81,6 +81,17 @@ class GroupHelper:
         self.return_to_group_page()
         self.group_cache = None  # необходимо сбросить кеш после его модификации (невалидный)
 
+    def edit_random_group_by_id(self, id, new_group_data):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.choose_group_by_id(id)
+        wd.find_element_by_name("edit").click()
+        self.fill_form_group(new_group_data)
+        # submit group creation
+        wd.find_element_by_name("update").click()
+        self.return_to_group_page()
+        self.group_cache = None  # необходимо сбросить кеш после его модификации (невалидный)
+
     def return_to_group_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()

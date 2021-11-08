@@ -73,7 +73,7 @@ class ContactHelper:
         wd.switch_to_alert().accept()  # принять уведомление
         self.contact_cache = None
 
-    def delete_random_contact_by_id(self, id):
+    def delete_contact_by_id(self, id):
         wd = self.app.wd
         self.open_home_page()
         # выбрать первый контакт
