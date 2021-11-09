@@ -30,7 +30,7 @@ class DbFixture:
         cursor = self.connection.cursor()  # указатель на данные в БД
         try:
             cursor.execute("select id, firstname, middlename, lastname, nickname, address, home, mobile, work, fax, "
-                           "email, email2, email3, bday, bmonth, byear, notes, phone2 from addressbook where deprecated='0000-00-00 00:00:00'")  # выполнение запроса
+                           "email, email2, email3, bday, bmonth, byear, notes, phone2, deprecated from addressbook where deprecated='0000-00-00 00:00:00'")  # выполнение запроса
             for row in cursor:
                 (id, first_name, middle_name, last_name, nick_name, address, home_number, mobile_number, work_number, fax_number, email, email2, email3,
                  birth_day, birth_month, birth_year, notes, second_number) = row
