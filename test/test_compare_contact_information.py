@@ -3,14 +3,10 @@ from random import randrange
 import re
 
 
-def test_contacts_on_home_page(app):
-    list_of_contacts = app.contact.get_contact_list()
-    index = randrange(len(list_of_contacts))
-    contact_from_home_page = app.contact.get_contact_list()[index]
-    contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
-    assert contact_from_home_page == contact_from_edit_page
-    assert contact_from_home_page.all_phones_from_home_page == merge_phones(contact_from_edit_page)  # за исключением факса, так как он не отображается на главной странице
-    assert contact_from_home_page.all_emails_from_home_page == merge_emails(contact_from_edit_page)
+def test_contacts_on_home_page(app, db):
+    contact_from_home_page = app.contact.get_contact_list()
+    contact_from_db = db.get_contact_list()
+    assert contact_from_home_page == contact_from_db
 
 
 @mark.skip(reason='not necessary')
