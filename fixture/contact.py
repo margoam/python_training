@@ -53,7 +53,6 @@ class ContactHelper:
 
     def choose_random_contact_for_edit_by_id(self, id):
         wd = self.app.wd
-        self.open_home_page()
         wd.find_element_by_css_selector("a[href='edit.php?id=%s']" % id).click()
 
     def create(self, contact):
@@ -105,6 +104,7 @@ class ContactHelper:
         self.choose_random_contact_for_edit_by_id(id)
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
+        self.return_to_home_page()
         self.contact_cache = None
 
     def return_to_home_page(self):
