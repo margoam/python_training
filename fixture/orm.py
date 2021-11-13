@@ -6,7 +6,13 @@ from pymysql.converters import decoders
 
 
 class ORMFixture:
+
     db = Database()
+
+    def __init__(self, host, name, user, password):
+        self.db.bind('mysql', host=host, database=name, user=user, password=password)
+        self.db.generate_mapping()
+        sql_debug(True)
 
     class ORMGroup(db.Entity):
         _table_ = 'group_list'
@@ -41,10 +47,7 @@ class ORMFixture:
         groups = Set(lambda: ORMFixture.ORMGroup, table="address_in_groups", column="group_id", reverse="contacts",
                      lazy=True)
 
-    def __init__(self, host, name, user, password):
-        self.db.bind('mysql', host=host, database=name, user=user, password=password)
-        self.db.generate_mapping()
-        sql_debug(True)
+
 
     def convert_groups_to_module(self, groups):
         def convert(group):

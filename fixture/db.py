@@ -17,7 +17,8 @@ class DbFixture:
         list = []
         cursor = self.connection.cursor()  # указатель на данные в БД
         try:
-            cursor.execute("select group_id, group_name, group_header, group_footer from group_list")  # выполнение запроса
+            cursor.execute(
+                "select group_id, group_name, group_header, group_footer from group_list")  # выполнение запроса
             for row in cursor:
                 (id, name, header, footer) = row
                 list.append(Group(id=str(id), name=name, header=header, footer=footer))
@@ -32,15 +33,31 @@ class DbFixture:
             cursor.execute("select id, firstname, middlename, lastname, nickname, address, home, mobile, work, fax, "
                            "email, email2, email3, bday, bmonth, byear, notes, phone2 from addressbook where deprecated='0000-00-00 00:00:00'")  # выполнение запроса
             for row in cursor:
-                (id, first_name, middle_name, last_name, nick_name, address, home_number, mobile_number, work_number, fax_number, email, email2, email3,
+                (id, first_name, middle_name, last_name, nick_name, address, home_number, mobile_number, work_number,
+                 fax_number, email, email2, email3,
                  birth_day, birth_month, birth_year, notes, second_number) = row
                 list.append(Contact(id=str(id), first_name=first_name, middle_name=middle_name, last_name=last_name,
-                                    nick_name=nick_name, address=address, home_number=home_number, mobile_number=mobile_number,
-                                    work_number=work_number, fax_number=fax_number, email=email, email2=email2, email3=email3,
-                                    birth_day=birth_day, birth_month=birth_month, birth_year=birth_year, notes=notes, second_number=second_number))
+                                    nick_name=nick_name, address=address, home_number=home_number,
+                                    mobile_number=mobile_number,
+                                    work_number=work_number, fax_number=fax_number, email=email, email2=email2,
+                                    email3=email3,
+                                    birth_day=birth_day, birth_month=birth_month, birth_year=birth_year, notes=notes,
+                                    second_number=second_number))
         finally:
             cursor.close()
         return list
+
+    #def get_contacts_in_group(self):
+      #  list = []
+       # cursor = self.connection.cursor()  # указатель на данные в БД
+       # try:
+           # cursor.execute("select id, group_id from address_in_groups")  # выполнение запроса
+            #for row in cursor:
+                #(id, group_id) = row
+                #list.append((Contact(id=str(id)), Group(id=group_id)))
+        #finally:
+          #  cursor.close()
+        #return list
 
     def destroy(self):
         self.connection.close()

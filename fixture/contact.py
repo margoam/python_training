@@ -2,6 +2,7 @@ from model.contact import Contact
 import re
 import os.path
 import json
+import time
 
 
 class ContactHelper:
@@ -179,3 +180,26 @@ class ContactHelper:
         fax_number = re.search("F: (.*)", text).group(1)
         return Contact(home_number=home_number, mobile_number=mobile_number, work_number=work_number,
                        fax_number=fax_number)
+
+    def add_contact_to_group(self, id, name):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_id(id).click()
+        wd.find_element_by_name("to_group").click()
+        time.sleep(2)
+        wd.find_element_by_name("to_group").send_keys(name)
+        time.sleep(2)
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
+    def del_contact_to_group(self, id, name):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_name("group").send_keys(name)
+        time.sleep(2)
+        wd.find_element_by_id(id).click()
+        time.sleep(2)
+        wd.find_element_by_name("remove").click()
+        time.sleep(2)
+        wd.find_element_by_link_text("home").click()
