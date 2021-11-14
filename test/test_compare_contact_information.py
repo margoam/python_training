@@ -22,7 +22,6 @@ def test_contacts_on_home_page(app, db):
     assert sorted(contact_from_home_page, key=Contact.id_or_max) == sorted(contact_from_db, key=Contact.id_or_max)
     assert sorted(phones_ui) == sorted(merged_phones_db)
     assert sorted(emails_ui) == sorted(merged_emails_db)
-    print(merged_phones_db, phones_ui, emails_ui, merged_emails_db)
 
 @mark.skip(reason='not necessary')
 def test_phones_contact_view_page(app):
