@@ -32,7 +32,7 @@ def test_add_contact_to_group(app, orm, db):
         contacts = db.get_contact_list()
         # выбор последнего добавленного контакта (нового) по наибольшему id
         selected_contact = max(contacts, key=Contact.id_or_max)
-        # выбор последней добавленной группы (здесь неважно, есть в группе уже контакты)
+        # выбор последней добавленной группы (здесь неважно, есть ли в группе уже контакты)
         selected_group = max(groups, key=Group.id_or_max)
     app.contact.add_contact_to_group(selected_contact.id, selected_group.name)
     contacts_in_group = orm.get_contacts_in_group(selected_group)
