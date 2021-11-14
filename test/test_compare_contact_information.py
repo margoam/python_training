@@ -3,6 +3,7 @@ from random import randrange
 import re
 
 
+@mark.skip(reason='updates are required - for homework 21')
 def test_contacts_on_home_page(app, db):
     contact_from_home_page = app.contact.get_contact_list()
     contact_from_db = db.get_contact_list()

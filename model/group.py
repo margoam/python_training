@@ -21,3 +21,6 @@ class Group:
         else:
             return maxsize
 
+    def compare_name(self):
+        return self.name
+
