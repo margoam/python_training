@@ -1,14 +1,28 @@
 from pytest import mark
+from model.contact import Contact
 from random import randrange
 import re
 
 
-@mark.skip(reason='updates are required - for homework 21')
 def test_contacts_on_home_page(app, db):
     contact_from_home_page = app.contact.get_contact_list()
     contact_from_db = db.get_contact_list()
-    assert contact_from_home_page == contact_from_db
-
+    merged_phones_db = []
+    phones_ui = []
+    merged_emails_db = []
+    emails_ui = []
+    for i in contact_from_db:
+        merged_phones_db.append(merge_phones(i))
+    for i in contact_from_home_page:
+        phones_ui.append(i.all_phones_from_home_page)
+    for i in contact_from_db:
+        merged_emails_db.append(merge_emails(i))
+    for i in contact_from_home_page:
+        emails_ui.append(i.all_emails_from_home_page)
+    assert sorted(contact_from_home_page, key=Contact.id_or_max) == sorted(contact_from_db, key=Contact.id_or_max)
+    assert sorted(phones_ui) == sorted(merged_phones_db)
+    assert sorted(emails_ui) == sorted(merged_emails_db)
+    print(merged_phones_db, phones_ui, emails_ui, merged_emails_db)
 
 @mark.skip(reason='not necessary')
 def test_phones_contact_view_page(app):
@@ -33,4 +47,5 @@ def merge_phones(contact):
 
 
 def merge_emails(contact):
-    return "\n".join(filter(lambda x: x != "", [contact.email, contact.email2, contact.email3]))
+    return "\n".join(filter(lambda x: x != "", map(lambda x: clear(x),
+                                                   filter(lambda x: x is not None, [contact.email, contact.email2, contact.email3]))))

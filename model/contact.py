@@ -29,19 +29,28 @@ class Contact:
         self.all_emails_from_home_page = all_emails_from_home_page
 
     def __repr__(self):
-        return "%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s" % (
+        return "%s %s %s %s %s %s %s %s %s %s %s %s" % (
         self.id, self.first_name, self.last_name, self.address, self.nickname, self.address,
-        self.home_number, self.mobile_number, self.work_number, self.fax_number, self.second_number, self.birth_day,
-        self.birth_month, self.birth_year, self.email, self.email2, self.email3, self.notes)
+        self.all_phones_from_home_page, self.all_emails_from_home_page, self.birth_day, self.birth_month, self.birth_year, self.notes)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) and (self.first_name is None or
                 other.first_name is None or self.first_name == other.first_name) and (self.last_name is None or
                 other.last_name is None or self.last_name == other.last_name) and (self.address is None or other.address
-                is None or self.address == other.address)
+                is None or self.address == other.address) and (self.all_phones_from_home_page is None or other.all_phones_from_home_page is None or
+                                                               self.all_phones_from_home_page == other.all_phones_from_home_page) and \
+               (self.all_emails_from_home_page is None or other.all_emails_from_home_page is None or self.all_emails_from_home_page == other.all_emails_from_home_page)
 
     def id_or_max(self):
         if self.id:
             return int(self.id)
         else:
             return maxsize
+
+#(self.home_number is None or other.home_number is None or
+ #                                                           self.home_number == other.home_number, self.mobile_number == other.mobile_number) and\
+     #          (self.work_number is None or other.work_number is None or self.work_number == other.work_number) and \
+     #          (self.second_number is None or other.second_number is None or self.second_number == other.second_number) \
+      #         and (self.email is None or other.email is None or self.email == other.email) and \
+      #         (self.email2 is None or other.email2 is None or self.email2 == other.email2) and \
+      #         (self.email3 is None or other.email3 is None or self.email3 == other.email3)
