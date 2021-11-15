@@ -15,14 +15,8 @@ def test_add_contact_to_group(app, orm, db):
     selected_contact = None
     selected_group = None
     # поиск контакта, которого нет хотя бы в одной группе
-    for contact in contacts:
-        for group in groups:
-            if contact in orm.get_contacts_in_group(group):
-                continue
-            elif contact not in orm.get_contacts_in_group(group):
-                selected_contact = contact
-                selected_group = group
-                break
+    selected_contact, selected_group = app.contact.find_contact_not_in_group(contacts, groups, orm, selected_contact,
+                                                                             selected_group)
     # если все доступные контакты уже добавлены во всевозможные группы
     if selected_group is None and selected_contact is None:
         # добавляем новый контакт, которого нет ни в какой группе
