@@ -44,5 +44,3 @@ class SessionHelper:  # Помощник по работе с сессией
             else:
                 self.logout()
         self.login(username, password)
-
-

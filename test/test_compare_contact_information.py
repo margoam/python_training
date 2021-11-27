@@ -8,6 +8,7 @@ def test_contacts_on_home_page(app, db):
     contact_from_db = db.get_contact_list()
     contact_from_db.sort(key=Contact.id_or_max)
     contact_from_home_page.sort(key=Contact.id_or_max)
+    # параллельное сравнение полей контактов (телефонов и емейлов)
     for i, k in zip(contact_from_db, contact_from_home_page):
         assert merge_phones(i) == k.all_phones_from_home_page
         assert merge_emails(i) == k.all_emails_from_home_page
