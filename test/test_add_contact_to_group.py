@@ -1,3 +1,5 @@
+import time
+
 from model.contact import Contact
 from model.group import Group
 import random
@@ -29,6 +31,7 @@ def test_add_contact_to_group(app, orm, db):
         # выбор последней добавленной группы (здесь неважно, есть ли в группе уже контакты)
         selected_group = max(groups, key=Group.id_or_max)
     app.contact.add_contact_to_group(selected_contact.id, selected_group.name)
+    time.sleep(2)
     contacts_in_group = orm.get_contacts_in_group(selected_group)
     # проверка, что выбранный контакт находится в соответствующей группе
     assert selected_contact in contacts_in_group
