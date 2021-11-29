@@ -3,3 +3,5 @@ selenium
 jsonpickle
 pony
 pymysql
+lxml
+allure-pytest
