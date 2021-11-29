@@ -206,7 +206,7 @@ class ContactHelper:
         time.sleep(0.5)
         wd.find_element_by_name("remove").click()
         time.sleep(0.5)
-        wd.find_element_by_link_text("home").click()
+        self.open_home_page()
 
     def find_contact_not_in_group(self, contacts, groups, orm, selected_contact, selected_group):
         # поиск контакта, которого нет хотя бы в одной группе
