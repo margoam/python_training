@@ -1,0 +1,99 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1638216085701" stop="1638216098250">
+  <name>test</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1638216085701" status="passed" stop="1638216095320">
+      <name>test_add_group.test_add_group[None namec headerLMTFGR8zyvI0 footer6FA0]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="23277-MainThread"/>
+        <label name="host" value="Amosava-MacBook-Pro.local"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1638216093852" status="passed" stop="1638216093874">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1638216093883" status="passed" stop="1638216095271">
+          <name>When I add a group None namec headerLMTFGR8zyvI0 footer6FA0 to the list</name>
+          <title>When I add a group None namec headerLMTFGR8zyvI0 footer6FA0 to the list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1638216095284" status="passed" stop="1638216095320">
+          <name>Then the new group list is equal to the old list with the added group</name>
+          <title>Then the new group list is equal to the old list with the added group</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1638216095346" status="passed" stop="1638216096656">
+      <name>test_add_group.test_add_group[None nameNP headere0g03afoM footero]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="23277-MainThread"/>
+        <label name="host" value="Amosava-MacBook-Pro.local"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1638216095405" status="passed" stop="1638216095420">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1638216095424" status="passed" stop="1638216096616">
+          <name>When I add a group None nameNP headere0g03afoM footero to the list</name>
+          <title>When I add a group None nameNP headere0g03afoM footero to the list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1638216096630" status="passed" stop="1638216096655">
+          <name>Then the new group list is equal to the old list with the added group</name>
+          <title>Then the new group list is equal to the old list with the added group</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1638216096678" status="passed" stop="1638216098250">
+      <name>test_add_group.test_add_group[None name99G headerqpgi footerYu]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="23277-MainThread"/>
+        <label name="host" value="Amosava-MacBook-Pro.local"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1638216096744" status="passed" stop="1638216096771">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1638216096779" status="passed" stop="1638216098206">
+          <name>When I add a group None name99G headerqpgi footerYu to the list</name>
+          <title>When I add a group None name99G headerqpgi footerYu to the list</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1638216098226" status="passed" stop="1638216098250">
+          <name>Then the new group list is equal to the old list with the added group</name>
+          <title>Then the new group list is equal to the old list with the added group</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>
