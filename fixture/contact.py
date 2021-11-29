@@ -85,7 +85,7 @@ class ContactHelper:
         wd.find_element_by_id(id).click()
         # удалить выбранный контакт
         wd.find_element_by_xpath("//input[@value = 'Delete']").click()
-        time.sleep(0.5)
+        time.sleep(1)
         wd.switch_to_alert().accept()  # принять уведомление
         time.sleep(0.5)
         self.open_home_page()
