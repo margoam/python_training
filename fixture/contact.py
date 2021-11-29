@@ -85,7 +85,10 @@ class ContactHelper:
         wd.find_element_by_id(id).click()
         # удалить выбранный контакт
         wd.find_element_by_xpath("//input[@value = 'Delete']").click()
+        time.sleep(0.5)
         wd.switch_to_alert().accept()  # принять уведомление
+        time.sleep(0.5)
+        self.open_home_page()
         self.contact_cache = None
 
     def edit(self):
@@ -190,6 +193,7 @@ class ContactHelper:
         wd.find_element_by_name("to_group").send_keys(name)
         time.sleep(2)
         wd.find_element_by_name("add").click()
+        time.sleep(0.5)
         wd.find_element_by_link_text("home").click()
 
     def del_contact_to_group(self, id, name):
